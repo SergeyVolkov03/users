@@ -27,6 +27,10 @@ export class AuthService {
       throw new UnauthorizedException('Invalid password');
     }
 
+    if (user.is_blocked) {
+      throw new UnauthorizedException('You are blocked');
+    }
+
     return {
       accessToken: this.jwtService.sign({ userId: user.id }),
     };
