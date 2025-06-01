@@ -19,5 +19,5 @@ model User {
   email String  @unique
   name  String?
   password String
-  is_blocked Boolean
+  is_blocked Boolean @default(false)
 }
