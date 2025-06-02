@@ -31,6 +31,13 @@ export class AuthService {
       throw new UnauthorizedException('You are blocked');
     }
 
+    await this.prisma.user.update({
+      where: { id: user.id },
+      data: {
+        last_time_at: new Date(),
+      },
+    });
+
     return {
       accessToken: this.jwtService.sign({ userId: user.id }),
     };
@@ -56,6 +63,7 @@ export class AuthService {
         name,
         email,
         password,
+        last_time_at: new Date(),
       },
     });
 

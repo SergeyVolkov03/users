@@ -20,4 +20,5 @@ model User {
   name  String?
   password String
   is_blocked Boolean @default(false)
+  last_time_at DateTime 
 }
